@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tai lieu chi tiet du an HHTQ Anime</title>
+  <style>
+    body { font-family: "Times New Roman", Arial, sans-serif; font-size: 12pt; line-height: 1.45; color: #111; }
+    h1 { text-align: center; font-size: 22pt; margin-bottom: 6px; }
+    h2 { font-size: 17pt; margin-top: 24px; color: #d97706; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+    h3 { font-size: 14pt; margin-top: 18px; color: #333; }
+    h4 { font-size: 12.5pt; margin-top: 14px; color: #555; }
+    code { font-family: Consolas, monospace; font-size: 10.5pt; background: #f4f4f4; padding: 1px 3px; }
+    pre { font-family: Consolas, monospace; font-size: 10pt; background: #f5f5f5; border: 1px solid #ddd; padding: 8px; white-space: pre-wrap; }
+    table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+    th, td { border: 1px solid #aaa; padding: 6px; vertical-align: top; }
+    th { background: #f2f2f2; }
+    .note { background: #fff7ed; border: 1px solid #fdba74; padding: 8px; }
+  </style>
+</head>
+<body>
+  <h1>TAI LIEU CHI TIET DU AN HHTQ ANIME</h1>
+  <p style="text-align:center"><b>React + Vite + MUI + AniList GraphQL API</b></p>
+  <p style="text-align:center">File nay dung de ban nam ro web cua minh khi duoc hoi ve function, const, hook, thu vien va luong hoat dong.</p>
+
+  <h2>1. Tong Quan Du An</h2>
+  <p>HHTQ Anime la mot web/app giao dien xem anime duoc xay bang React. Giao dien duoc dat trong khung dien thoai gia lap, co cac trang chinh nhu dang nhap, dang ky, menu anime, tim kiem, ca nhan, lich su xem, phim da thich, phim da theo doi, phan hoi y kien, FAQ va doi mat khau.</p>
+  <p>Du an hien tai dung API-only cho cac danh sach phim. Nghia la khi mo trang, web goi API truoc. Trong luc doi API, phan noi dung phim de trong/trang den. Neu API loi hoac tra ve rong, web hien thong bao loi API. Web khong do du lieu tinh cu vao danh sach phim nua.</p>
+
+  <h3>Cong nghe chinh</h3>
+  <table>
+    <tr><th>Thanh phan</th><th>Vai tro</th><th>Vi sao dung</th><th>So sanh voi cai khac</th></tr>
+    <tr><td>React 19</td><td>Xay component UI, quan ly state va render giao dien.</td><td>Phu hop SPA, de chia nho thanh component.</td><td>Vue de hoc hon voi template; Angular day du hon nhung nang hon.</td></tr>
+    <tr><td>Vite</td><td>Chay dev server va build production.</td><td>Nhanh, cau hinh gon.</td><td>Create React App cu va cham hon; Next.js manh hon nhung can kien truc routing/server rieng.</td></tr>
+    <tr><td>MUI Material</td><td>Cung cap Box, Stack, Typography, Button, TextField...</td><td>Giup lam UI nhanh, style bang prop <code>sx</code>.</td><td>Tailwind linh hoat hon nhung phai tu lap component; Bootstrap de giong mau co san.</td></tr>
+    <tr><td>MUI Icons</td><td>Cung cap icon cho menu, login, search, profile...</td><td>Dong bo voi MUI, import truc tiep.</td><td>Lucide nhe va dep, nhung du an nay da theo MUI.</td></tr>
+    <tr><td>AniList GraphQL API</td><td>Lay du lieu anime Trung Quoc.</td><td>GraphQL cho phep chon dung truong can lay.</td><td>REST API de hieu hon, nhung kem linh hoat hon GraphQL.</td></tr>
+    <tr><td>localStorage</td><td>Luu user, profile, ngon ngu, tai khoan dang ky.</td><td>Khong can backend rieng, du cho demo/frontend.</td><td>Database/backend that an toan va dung hon cho san pham thuc te.</td></tr>
+    <tr><td>Vercel</td><td>Deploy production.</td><td>Deploy React/Vite nhanh, co alias production.</td><td>Netlify tuong tu; VPS linh hoat hon nhung can tu cau hinh server.</td></tr>
+  </table>
+
+  <h2>2. Lenh Chay Va Deploy</h2>
+  <pre>npm run dev      // chay local dev server bang Vite
+npm run build    // build production
+npx eslint src   // kiem tra loi source app
+npx vercel --prod --yes  // deploy len Vercel production</pre>
+  <p>File <code>package.json</code> khai bao script: <code>dev</code>, <code>build</code>, <code>preview</code>, <code>lint</code>.</p>
+
+  <h2>3. Cau Truc Thu Muc</h2>
+  <table>
+    <tr><th>Duong dan</th><th>Y nghia</th></tr>
+    <tr><td><code>src/main.js</code></td><td>Diem vao cua app React. Gan App vao DOM, boc ThemeProvider va CssBaseline.</td></tr>
+    <tr><td><code>src/App.js</code></td><td>Router thu cong dua tren <code>window.location.pathname</code>.</td></tr>
+    <tr><td><code>src/theme.js</code></td><td>Tao theme MUI.</td></tr>
+    <tr><td><code>src/services/animeApi.js</code></td><td>Toan bo ham goi AniList GraphQL API va mapping du lieu.</td></tr>
+    <tr><td><code>src/pages/MenuPage.js</code></td><td>Trang home/menu anime chinh.</td></tr>
+    <tr><td><code>src/pages/AnimeMockPages.js</code></td><td>Nhieu trang phu: search, profile, history, favorites, followed, feedback...</td></tr>
+    <tr><td><code>src/components/LoginScreen.js</code></td><td>Man hinh dang nhap va cac component auth dung chung.</td></tr>
+    <tr><td><code>src/components/RegisterScreen.js</code></td><td>Man hinh dang ky, validate form, tao user moi.</td></tr>
+    <tr><td><code>src/components/PhoneFrame.js</code></td><td>Khung dien thoai gia lap.</td></tr>
+    <tr><td><code>src/components/PageShell.js</code></td><td>Khung nen ngoai cung cho moi page.</td></tr>
+    <tr><td><code>src/components/EmptyStateScreen.js</code></td><td>Trang thong bao rong, mat mang, can dang nhap.</td></tr>
+    <tr><td><code>src/data/users.json</code></td><td>User mau co san cho dang nhap demo.</td></tr>
+    <tr><td><code>public/assets</code></td><td>Chua anh local cua du an.</td></tr>
+  </table>
+
+  <h2>4. Luong Khoi Dong App</h2>
+  <ol>
+    <li>Trinh duyet tai <code>index.html</code>.</li>
+    <li><code>src/main.js</code> duoc chay.</li>
+    <li>React tao root bang <code>ReactDOM.createRoot(...)</code>.</li>
+    <li>App duoc boc trong <code>ThemeProvider</code> va <code>CssBaseline</code>.</li>
+    <li><code>App.js</code> doc path hien tai.</li>
+    <li>Neu path la <code>/</code> thi chuyen ngay sang <code>/login</code>.</li>
+    <li>Neu path co trong mang <code>routes</code>, render component tuong ung.</li>
+    <li>Neu path khong co, mac dinh render <code>LoginPage</code>.</li>
+  </ol>
+
+  <h2>5. Hook React Dung Trong Du An</h2>
+  <h3>useState</h3>
+  <p><code>useState</code> dung de tao state noi bo trong component. Moi lan goi ham set, React render lai giao dien.</p>
+  <pre>const [homeData, setHomeData] = useState(null);
+const [apiError, setApiError] = useState('');
+const [values, setValues] = useState({...});</pre>
+  <p>Du an dung <code>useState</code> cho: form login, form register, form profile, ngon ngu, toast, API data, API error, search query, feedback text.</p>
+  <p>So sanh: <code>useRef</code> cung luu gia tri nhung khong render lai UI; <code>useReducer</code> hop khi state phuc tap hon.</p>
+
+  <h3>useEffect</h3>
+  <p><code>useEffect</code> dung de chay tac vu phu sau khi component render, vi du goi API hoac scroll theo hash.</p>
+  <pre>useEffect(() => {
+  fetchHomeAnime().then(setHomeData).catch(...);
+}, []);</pre>
+  <p>Mang phu thuoc <code>[]</code> nghia la chi chay mot lan khi component mount.</p>
+  <p>So sanh: Goi API truc tiep trong render se gay lap vo han; React Query/SWR quan ly fetch tot hon nhung can them thu vien.</p>
+
+  <h3>Custom hook: useApiVideoItems</h3>
+  <p>Nam trong <code>AnimeMockPages.js</code>. Day la hook tu viet de cac trang Search, History, Favorites, Followed dung chung logic API-only.</p>
+  <pre>const { items, loading, error } = useApiVideoItems();</pre>
+  <p>Chuc nang:</p>
+  <ul>
+    <li>Ban dau: <code>items = []</code>, <code>loading = true</code>, <code>error = ''</code>.</li>
+    <li>Goi <code>fetchAnimeCatalog()</code>.</li>
+    <li>Thanh cong: dua du lieu API vao <code>items</code>, tat loading.</li>
+    <li>Loi: <code>items = []</code>, <code>error</code> co noi dung loi.</li>
+  </ul>
+  <p>Vi sao dung: tranh lap code goi API o nhieu trang.</p>
+  <p>So sanh: React Query/SWR co cache, retry, stale time, loading state tot hon. Custom hook nay gon hon va du cho du an hien tai.</p>
+
+  <h2>6. Service API: src/services/animeApi.js</h2>
+  <p>File nay la trai tim cua luong du lieu anime. No khong render UI, chi goi API va chuyen du lieu API ve dung format UI can.</p>
+
+  <table>
+    <tr><th>Const / Function</th><th>Chuc nang</th><th>Vi sao dung</th></tr>
+    <tr><td><code>API_BASE</code></td><td>Chua URL API: <code>https://graphql.anilist.co</code>.</td><td>Tap trung endpoint vao mot cho, de doi API ve sau.</td></tr>
+    <tr><td><code>fetchGraphQL(query, variables)</code></td><td>Goi AniList bang method POST, gui query GraphQL va variables.</td><td>GraphQL bat buoc gui query trong body POST.</td></tr>
+    <tr><td><code>AbortController</code> trong <code>fetchGraphQL</code></td><td>Huy request neu qua 9 giay.</td><td>Tranh app cho API qua lau.</td></tr>
+    <tr><td><code>pickImage(anime)</code></td><td>Lay anh <code>coverImage.large</code> hoac <code>coverImage.medium</code>.</td><td>Dam bao UI co anh de render.</td></tr>
+    <tr><td><code>titleOf(anime)</code></td><td>Lay ten English, Romaji, Native theo thu tu uu tien.</td><td>API co the thieu mot loai ten, nen can fallback trong noi bo API item.</td></tr>
+    <tr><td><code>formatViews(anime)</code></td><td>Doi <code>popularity</code> thanh chuoi nhu <code>12k lượt xem</code>.</td><td>UI can hien thi giong app xem phim.</td></tr>
+    <tr><td><code>formatEpisode(anime, index)</code></td><td>Doi so tap/status thanh chuoi <code>Tập ...</code> hoac <code>Sắp chiếu</code>.</td><td>Dong nhat format tap phim.</td></tr>
+    <tr><td><code>toLatest(anime, index)</code></td><td>Map anime thanh <code>[title, views, episode, image]</code>.</td><td>Phu hop component PosterTile o MenuPage.</td></tr>
+    <tr><td><code>toVideoRow(anime, index)</code></td><td>Map anime thanh <code>[title, episode, views, image]</code>.</td><td>Phu hop VideoRow o cac trang phu.</td></tr>
+    <tr><td><code>toComingSoon(anime)</code></td><td>Map anime thanh <code>[title, image]</code>.</td><td>Phu hop carousel sap ra mat.</td></tr>
+    <tr><td><code>toRanking(anime)</code></td><td>Map anime thanh <code>[title, episodeInfo, views, image]</code>.</td><td>Phu hop BXH.</td></tr>
+    <tr><td><code>toNews(anime, index)</code></td><td>Tao dong tin tuc tu anime.</td><td>Du an chua co API tin tuc that, nen tao tin tu API anime.</td></tr>
+    <tr><td><code>toManga(anime)</code></td><td>Map thanh <code>[title, image]</code>.</td><td>Phu hop grid manga.</td></tr>
+    <tr><td><code>validRows(rows)</code></td><td>Loc item thieu du lieu.</td><td>Tranh render item loi/khong co anh.</td></tr>
+    <tr><td><code>requireApiRows(nextRows, limit)</code></td><td>Cat danh sach theo limit; neu rong thi throw error.</td><td>Dung theo yeu cau API-only: API loi/rong thi bao loi, khong fallback du lieu tinh.</td></tr>
+    <tr><td><code>fetchHomeAnime()</code></td><td>Lay 30 anime Trung Quoc va chia thanh comingSoon, latestAnime, ranking, news, manga.</td><td>Dung cho MenuPage.</td></tr>
+    <tr><td><code>fetchAnimeCatalog(limit = 30)</code></td><td>Lay catalog anime dang hang video.</td><td>Dung cho Search, History, Favorites, Followed.</td></tr>
+  </table>
+
+  <h3>Luong API-only hien tai</h3>
+  <ol>
+    <li>Component mount.</li>
+    <li>State ban dau la rong: <code>null</code> hoac <code>[]</code>.</li>
+    <li>Goi API AniList.</li>
+    <li>Neu API thanh cong, mapping du lieu bang cac ham <code>to...</code>.</li>
+    <li>Neu co du lieu hop le, render UI.</li>
+    <li>Neu API loi/rong, throw error va UI hien <code>Lỗi API</code>.</li>
+  </ol>
+
+  <h2>7. Routing: src/App.js</h2>
+  <p>Du an khong dung <code>react-router-dom</code>. Thay vao do, <code>App.js</code> tu doc <code>window.location.pathname</code> va tim trong mang <code>routes</code>.</p>
+  <table>
+    <tr><th>Const / Function</th><th>Chuc nang</th></tr>
+    <tr><td><code>routes</code></td><td>Mang mapping path sang component. Vi du <code>/home</code> render <code>MenuPage</code>, <code>/login</code> render <code>LoginPage</code>.</td></tr>
+    <tr><td><code>App()</code></td><td>Lay current path, redirect <code>/</code> sang <code>/login</code>, tim route va render component.</td></tr>
+  </table>
+  <p>Vi sao chua dung router thu vien: du an nho, routing don gian. Neu web lon hon, nen dung <code>react-router-dom</code> de co <code>Link</code>, <code>useNavigate</code>, nested route, route params.</p>
+
+  <h2>8. Trang Menu: src/pages/MenuPage.js</h2>
+  <p>MenuPage la trang chu anime. Trang nay da duoc sua thanh API-only.</p>
+  <table>
+    <tr><th>Const / Function</th><th>Chuc nang</th></tr>
+    <tr><td><code>assetPosters</code></td><td>Danh sach anh local du phong cho ham poster. Khong con la nguon du lieu danh sach phim API-only.</td></tr>
+    <tr><td><code>poster(image)</code></td><td>Neu image la local path hoac URL https thi tra ve luon. Neu la seed khac, chon anh local theo hash.</td></tr>
+    <tr><td><code>go(path)</code></td><td>Dieu huong bang <code>window.location.href</code>.</td></tr>
+    <tr><td><code>getCurrentUser()</code></td><td>Doc user dang dang nhap trong localStorage.</td></tr>
+    <tr><td><code>STATIC_COMING_SOON</code>, <code>STATIC_LATEST_ANIME</code>, <code>STATIC_RANKING</code>, <code>STATIC_NEWS</code>, <code>STATIC_MANGA</code></td><td>Du lieu cu duoc doi ten thanh STATIC. Khong duoc render trong flow API-only.</td></tr>
+    <tr><td><code>Header()</code></td><td>Thanh tren cung: menu, ten app, doi nen, search, profile.</td></tr>
+    <tr><td><code>SectionTitle()</code></td><td>Component tieu de section.</td></tr>
+    <tr><td><code>ShowMore()</code></td><td>Nut xem them, mac dinh di toi <code>/search</code>.</td></tr>
+    <tr><td><code>PosterTile()</code></td><td>Card poster anime. Co mode compact/featured, hover 3D, anh ro/net.</td></tr>
+    <tr><td><code>Toast()</code></td><td>Thong bao tam thoi khi click phim hoac doi nen.</td></tr>
+    <tr><td><code>MenuPage()</code></td><td>Goi <code>fetchHomeAnime()</code>, neu chua co data thi trang trong, neu loi thi hien loi, neu thanh cong thi render toan bo section.</td></tr>
+  </table>
+  <h3>Luong MenuPage</h3>
+  <ol>
+    <li><code>homeData</code> ban dau la <code>null</code>.</li>
+    <li><code>useEffect</code> goi <code>fetchHomeAnime()</code>.</li>
+    <li>Trong luc cho API: render khung den trong, khong co danh sach tinh.</li>
+    <li>API thanh cong: set <code>homeData</code> va render coming soon, latest, ranking, news, manga.</li>
+    <li>API loi: set <code>apiError</code>, hien <code>Lỗi API</code>.</li>
+  </ol>
+
+  <h2>9. Cac Trang Phu: src/pages/AnimeMockPages.js</h2>
+  <p>File nay gom nhieu component. Day la file lon nhat cua du an.</p>
+  <table>
+    <tr><th>Const / Function</th><th>Chuc nang</th></tr>
+    <tr><td><code>orange</code>, <code>bg</code>, <code>line</code>, <code>muted</code></td><td>Mau dung chung cho cac trang phu.</td></tr>
+    <tr><td><code>assetPosters</code></td><td>Danh sach anh local cho ham poster.</td></tr>
+    <tr><td><code>poster(image)</code></td><td>Xu ly anh local hoac URL API.</td></tr>
+    <tr><td><code>go(path)</code></td><td>Dieu huong trang.</td></tr>
+    <tr><td><code>getCurrentUser()</code></td><td>Doc user hien tai tu localStorage.</td></tr>
+    <tr><td><code>readStoredJson(key, fallback)</code></td><td>Doc JSON an toan tu localStorage.</td></tr>
+    <tr><td><code>getProfileInfo()</code></td><td>Lay profile cua user; neu chua cap nhat thi tra thong tin trong.</td></tr>
+    <tr><td><code>languageOptions</code></td><td>Danh sach ngon ngu co the chon: vi, en, th.</td></tr>
+    <tr><td><code>languageText</code></td><td>Bo text cho tung ngon ngu.</td></tr>
+    <tr><td><code>getStoredLanguage()</code></td><td>Lay ngon ngu trong localStorage, mac dinh vi.</td></tr>
+    <tr><td><code>getLanguageCopy()</code></td><td>Lay object text theo ngon ngu hien tai.</td></tr>
+    <tr><td><code>STATIC_RANKING_ITEMS</code>, <code>STATIC_HISTORY_TODAY</code>, <code>STATIC_HISTORY_SECOND</code>, <code>STATIC_FAVORITE_ITEMS</code>, <code>STATIC_FOLLOWED_ITEMS</code></td><td>Du lieu cu duoc giu lai voi tien to STATIC, khong dung lam source chinh trong API-only.</td></tr>
+    <tr><td><code>EmptyListMessage()</code></td><td>Thong bao danh sach rong. Hien it dung trong API-only vi loading la trang trong va loi la ApiOnlyState.</td></tr>
+    <tr><td><code>ProfileAvatar()</code></td><td>Hien avatar; neu profile chua update thi de trong.</td></tr>
+    <tr><td><code>FeedbackProfileSummary()</code></td><td>Hang thong tin user trong trang feedback.</td></tr>
+    <tr><td><code>PhonePage()</code></td><td>Wrapper gom PageShell va PhoneFrame.</td></tr>
+    <tr><td><code>TopBar()</code></td><td>Thanh tren cung co nut back, title, search hoac action.</td></tr>
+    <tr><td><code>SearchBox()</code></td><td>O tim kiem; co the la input that hoac box click.</td></tr>
+    <tr><td><code>BottomNav()</code></td><td>Thanh dieu huong duoi: Home, Like, Follow, Settings.</td></tr>
+    <tr><td><code>PlayThumb()</code></td><td>Thumbnail video co icon play.</td></tr>
+    <tr><td><code>VideoRow()</code></td><td>Mot hang video gom thumbnail, ten, tap, luot xem va nut menu.</td></tr>
+    <tr><td><code>ApiOnlyState()</code></td><td>Trang trong khi loading; hien loi khi API loi.</td></tr>
+    <tr><td><code>useApiVideoItems()</code></td><td>Custom hook goi <code>fetchAnimeCatalog()</code> cho cac trang phu.</td></tr>
+    <tr><td><code>SideMenuPage()</code></td><td>Menu ben canh, link toi section cua /home.</td></tr>
+    <tr><td><code>SearchResultsPage()</code></td><td>Trang tim kiem. Goi API catalog, filter theo query.</td></tr>
+    <tr><td><code>SearchEmptyPage()</code></td><td>Trang empty search mau.</td></tr>
+    <tr><td><code>ProfileMenu()</code></td><td>Danh sach menu trong profile: history, doi password, ngon ngu, FAQ, feedback.</td></tr>
+    <tr><td><code>ProfilePage()</code></td><td>Trang ca nhan; co mode guest va popup ngon ngu.</td></tr>
+    <tr><td><code>LanguageDialog()</code></td><td>Popup chon ngon ngu, luu vao localStorage.</td></tr>
+    <tr><td><code>EditProfilePage()</code></td><td>Form sua profile: ho ten, email, sdt, ngay sinh, gioi tinh, avatar.</td></tr>
+    <tr><td><code>HistoryPage()</code></td><td>Trang lich su xem. Hien lay API-only bang useApiVideoItems.</td></tr>
+    <tr><td><code>ChangePasswordPage()</code></td><td>Form doi mat khau giao dien.</td></tr>
+    <tr><td><code>FaqPage()</code></td><td>Danh sach cau hoi thuong gap.</td></tr>
+    <tr><td><code>FeedbackPage()</code></td><td>Trang chon loai phan hoi.</td></tr>
+    <tr><td><code>FeedbackFormPage()</code></td><td>Form nhap noi dung phan hoi, dem 1000 ky tu.</td></tr>
+    <tr><td><code>VideoActionSheet()</code></td><td>Bottom sheet cho xoa/chia se phim.</td></tr>
+    <tr><td><code>DeleteConfirmDialog()</code></td><td>Popup xac nhan xoa.</td></tr>
+    <tr><td><code>VideoListPage()</code></td><td>Component dung chung cho Favorites va Followed.</td></tr>
+    <tr><td><code>FavoritesPage()</code></td><td>Trang phim da thich, API-only.</td></tr>
+    <tr><td><code>FollowedPage()</code></td><td>Trang phim da theo doi, API-only.</td></tr>
+  </table>
+
+  <h3>Luong Search</h3>
+  <ol>
+    <li>Doc query tu URL: <code>/search?q=...</code>.</li>
+    <li>Goi <code>useApiVideoItems()</code>.</li>
+    <li>Loading: trang trong.</li>
+    <li>API thanh cong: filter danh sach theo query.</li>
+    <li>Nguoi dung search: cap nhat query, them chip, replace URL.</li>
+  </ol>
+
+  <h3>Luong Profile</h3>
+  <ol>
+    <li>Doc user tu <code>currentUser</code>.</li>
+    <li>Doc profile tu <code>profileInfo</code>.</li>
+    <li>Neu profile chua updated thi avatar trong va hien "chua cap nhat".</li>
+    <li>Click sua profile di toi <code>/profile-edit</code>.</li>
+    <li>Luu profile ghi lai <code>profileInfo</code> va cap nhat <code>currentUser</code>.</li>
+  </ol>
+
+  <h3>Luong Language</h3>
+  <ol>
+    <li>Mo <code>/profile-language</code>.</li>
+    <li><code>LanguageDialog</code> lay ngon ngu hien tai tu localStorage.</li>
+    <li>Chon ngon ngu va bam xac nhan.</li>
+    <li>Luu <code>appLanguage</code>, quay ve profile.</li>
+  </ol>
+
+  <h2>10. Auth: LoginScreen.js</h2>
+  <table>
+    <tr><th>Const / Function</th><th>Chuc nang</th></tr>
+    <tr><td><code>authColors</code></td><td>Mau dung chung cho form auth.</td></tr>
+    <tr><td><code>authInputSx(state)</code></td><td>Tra ve style MUI TextField theo trang thai default/focused/error.</td></tr>
+    <tr><td><code>FieldLabel()</code></td><td>Label cho input.</td></tr>
+    <tr><td><code>AuthInput()</code></td><td>Input dung chung cho login/register, co icon, helper text, state.</td></tr>
+    <tr><td><code>AuthTabs()</code></td><td>Tab Dang nhap / Dang ky.</td></tr>
+    <tr><td><code>SocialButton()</code></td><td>Nut Google/Facebook demo, hien alert chua ho tro.</td></tr>
+    <tr><td><code>normalizeEmail(email)</code></td><td>Trim va lowercase email.</td></tr>
+    <tr><td><code>getStoredUsers()</code></td><td>Doc user da dang ky trong localStorage.</td></tr>
+    <tr><td><code>getAllUsers()</code></td><td>Gop user mau trong JSON va user localStorage.</td></tr>
+    <tr><td><code>LoginScreen()</code></td><td>Form dang nhap, validate email/password, luu currentUser, chuyen sang /home.</td></tr>
+  </table>
+
+  <h3>Luong dang nhap</h3>
+  <ol>
+    <li>Nguoi dung nhap email/password.</li>
+    <li><code>handleChange</code> cap nhat state va xoa loi cua field do.</li>
+    <li><code>handleSubmit</code> validate rong, validate email format.</li>
+    <li>Tim account trong <code>getAllUsers()</code>.</li>
+    <li>Neu dung mat khau: luu <code>currentUser</code> vao localStorage.</li>
+    <li>Sau 500ms chuyen sang <code>/home</code>.</li>
+  </ol>
+
+  <h2>11. Auth: RegisterScreen.js</h2>
+  <table>
+    <tr><th>Const / Function</th><th>Chuc nang</th></tr>
+    <tr><td><code>emptyValues</code></td><td>Gia tri form dang ky rong.</td></tr>
+    <tr><td><code>filledValues</code></td><td>Gia tri mau cho trang register-filled.</td></tr>
+    <tr><td><code>errorMessages</code></td><td>Thong bao loi mac dinh.</td></tr>
+    <tr><td><code>compactFieldSx</code></td><td>Style rut gon field register.</td></tr>
+    <tr><td><code>compactSelectSx(state)</code></td><td>Style select gioi tinh.</td></tr>
+    <tr><td><code>resetNewAccountState(user)</code></td><td>Reset profile/list cua user moi: profile chua cap nhat, watched/favorite/followed rong.</td></tr>
+    <tr><td><code>genderState(value, error, focused)</code></td><td>Tinh trang thai select gioi tinh.</td></tr>
+    <tr><td><code>RegisterScreen()</code></td><td>Form dang ky, validate, tao user moi va luu localStorage.</td></tr>
+  </table>
+
+  <h3>Luong dang ky</h3>
+  <ol>
+    <li>Nguoi dung nhap thong tin.</li>
+    <li><code>validate()</code> kiem tra ho ten, email, sdt, ngay sinh, gioi tinh, password.</li>
+    <li>Kiem tra email da ton tai bang <code>getAllUsers()</code>.</li>
+    <li>Tao <code>nextUser</code> voi <code>Date.now()</code> lam id.</li>
+    <li>Luu vao <code>registeredUsers</code>.</li>
+    <li>Luu <code>currentUser</code>.</li>
+    <li>Goi <code>resetNewAccountState()</code>.</li>
+    <li>Chuyen sang <code>/home</code>.</li>
+  </ol>
+
+  <h2>12. Layout Components</h2>
+  <table>
+    <tr><th>File</th><th>Function / Const</th><th>Chuc nang</th></tr>
+    <tr><td><code>PhoneFrame.js</code></td><td><code>phoneSx</code></td><td>Style khung dien thoai: kich thuoc, nen, bong, responsive.</td></tr>
+    <tr><td><code>PhoneFrame.js</code></td><td><code>PhoneFrame()</code></td><td>Boc noi dung vao khung phone.</td></tr>
+    <tr><td><code>PageShell.js</code></td><td><code>PageShell()</code></td><td>Khung nen toan trang, can giua noi dung.</td></tr>
+    <tr><td><code>EmptyStateScreen.js</code></td><td><code>orange</code></td><td>Mau cam dung cho illustration.</td></tr>
+    <tr><td><code>EmptyStateScreen.js</code></td><td><code>Illustration(type)</code></td><td>Ve minh hoa bang Box va icon MUI.</td></tr>
+    <tr><td><code>EmptyStateScreen.js</code></td><td><code>EmptyStateScreen()</code></td><td>Man hinh thong bao nhu can dang nhap/mat ket noi.</td></tr>
+  </table>
+
+  <h2>13. Cac Page Wrapper Nho</h2>
+  <p>Cac file nhu <code>LoginPage.js</code>, <code>LoginFilledPage.js</code>, <code>LoginErrorPage.js</code>, <code>RegisterPage.js</code>, <code>RegisterFilledPage.js</code>, <code>RegisterErrorPage.js</code>, <code>NoWifiPage.js</code>, <code>LoginRequiredPage.js</code> chu yeu la wrapper.</p>
+  <p>Chuc nang cua chung: boc component chinh vao <code>PageShell</code> va truyen prop variant/type phu hop.</p>
+  <p>Vi du:</p>
+  <pre>function LoginPage() {
+  return (
+    &lt;PageShell&gt;
+      &lt;LoginScreen /&gt;
+    &lt;/PageShell&gt;
+  );
+}</pre>
+
+  <h2>14. Vi Sao Dung API-only</h2>
+  <p>Theo yeu cau hien tai, web khong duoc hien du lieu tinh cu khi mo trang. Dieu nay giup ban chung minh du lieu dang den tu API that.</p>
+  <p>Cach lam:</p>
+  <ul>
+    <li>State ban dau de rong.</li>
+    <li>Khong truyen fallback vao API service.</li>
+    <li>Neu API loi thi throw error.</li>
+    <li>UI loading la trang trong.</li>
+    <li>UI error hien <code>Lỗi API</code>.</li>
+  </ul>
+  <p>So sanh voi fallback data: fallback giup app khong bi trong khi API loi, trai nghiem nguoi dung tot hon. Nhung fallback khien nguoi xem tuong rang web dang dung du lieu tinh. API-only phu hop khi can demo kha nang lay du lieu that.</p>
+
+  <h2>15. Diem Can Biet Khi Duoc Hoi Ve Web</h2>
+  <h3>Neu hoi: Web lay du lieu phim o dau?</h3>
+  <p>Tra loi: Web lay du lieu tu AniList GraphQL API trong file <code>src/services/animeApi.js</code>. Trang home dung <code>fetchHomeAnime()</code>, cac trang phu dung <code>fetchAnimeCatalog()</code>.</p>
+
+  <h3>Neu hoi: Web co dung backend rieng khong?</h3>
+  <p>Tra loi: Chua co backend rieng. User va profile demo duoc luu bang localStorage; phim/anime lay tu API cong khai AniList.</p>
+
+  <h3>Neu hoi: Vi sao luc mo trang bi trong?</h3>
+  <p>Tra loi: Do web duoc cau hinh API-only. Trong luc cho API, web khong hien du lieu tinh de tranh nham lan. Khi API ve thi moi render danh sach.</p>
+
+  <h3>Neu hoi: Neu API loi thi sao?</h3>
+  <p>Tra loi: Service API se throw error, UI hien thong bao <code>Lỗi API</code>. Khong fallback sang du lieu cu.</p>
+
+  <h3>Neu hoi: Dang nhap/dang ky that chua?</h3>
+  <p>Tra loi: Dang nhap/dang ky hien la demo frontend. Tai khoan mau nam trong <code>users.json</code>, tai khoan dang ky moi luu localStorage.</p>
+
+  <h3>Neu hoi: Profile luu o dau?</h3>
+  <p>Tra loi: Profile luu trong localStorage voi key <code>profileInfo</code>.</p>
+
+  <h3>Neu hoi: Doi ngon ngu hoat dong nhu nao?</h3>
+  <p>Tra loi: Chon ngon ngu luu key <code>appLanguage</code> vao localStorage; Profile doc object text tu <code>languageText</code>.</p>
+
+  <h2>16. Goi Y Nang Cap Sau Nay</h2>
+  <ul>
+    <li>Dung <code>react-router-dom</code> thay cho routing thu cong.</li>
+    <li>Dung React Query hoac SWR de quan ly API cache/loading/error chuyen nghiep hon.</li>
+    <li>Tach <code>AnimeMockPages.js</code> thanh nhieu file nho: Profile, Search, Feedback, Lists.</li>
+    <li>Lam backend that cho user/profile/favorite/history thay vi localStorage.</li>
+    <li>Them API tin tuc that thay vi tao tin tu anime.</li>
+    <li>Them skeleton loading neu muon trai nghiem tot hon, nhung hien tai ban dang yeu cau loading trong.</li>
+    <li>Chuan hoa encoding tieng Viet trong mot so output terminal neu can review code dep hon.</li>
+  </ul>
+
+  <h2>17. Tom Tat Ngan Gon</h2>
+  <p>Du an HHTQ Anime la React SPA dung Vite va MUI. App vao <code>/login</code> dau tien, dang nhap/dang ky luu user bang localStorage, trang home va cac trang danh sach phim lay du lieu AniList API theo che do API-only. Hook quan trong nhat la <code>useApiVideoItems()</code>, service quan trong nhat la <code>animeApi.js</code>. UI duoc chia thanh component nhu PhoneFrame, PageShell, PosterTile, VideoRow, TopBar, BottomNav. Khi API thanh cong thi render phim; khi API loi thi bao loi; khi loading thi de trong.</p>
+</body>
+</html>

@@ -1,0 +1,2 @@
+◇ injected env (5) from .env // tip: ⌘ override existing { override: true }
+API server đang chạy tại http://localhost:3001
